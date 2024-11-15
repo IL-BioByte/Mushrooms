@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__, template_folder='templates')
 
 
-model = joblib.load('/Users/chengyin/Documents/GitHub/Mushrooms/build/mushroom_tree_model.pkl')
+model = joblib.load('models/mushroom_tree_model.pkl')
 
 feature_mappings = {
     'cap_shape': ['bell', 'conical', 'convex', 'flat', 'knobbed', 'sunken'],
