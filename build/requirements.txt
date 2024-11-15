@@ -106,9 +106,6 @@ pycparser==2.22
 PyGetWindow==0.0.9
 Pygments==2.15.0
 PyMsgBox==1.0.9
-pyobjc-core==10.3.1
-pyobjc-framework-Cocoa==10.3.1
-pyobjc-framework-Quartz==10.3.1
 pyparsing==3.0.9
 pyperclip==1.9.0
 PyRect==0.2.0
