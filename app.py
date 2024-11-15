@@ -8,7 +8,6 @@ app = Flask(__name__, template_folder='templates')
 
 model = joblib.load('mushroom_tree_model.pkl')
 
-# Original feature mappings
 feature_mappings = {
     'cap_shape': ['bell', 'conical', 'convex', 'flat', 'knobbed', 'sunken'],
     'cap_surface': ['fibrous', 'grooves', 'scaly', 'smooth'],
