@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom Edibility Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Mushroom Edibility Prediction</h1>
+    </header>
+</body>
+</html>
+    
+<body>
+    {% if prediction_text %}
+    <h2>{{ prediction_text }}</h2>
+    {% endif %}
+    <h1>Enter Your Mushroom Information Below</h1>
+    <form action="/" method="post">
+        <label for="cap_shape">Cap Shape:</label>
+        <select name="cap_shape" required>
+            <option value="bell">Bell</option>
+            <option value="conical">Conical</option>
+            <option value="convex">Convex</option>
+            <option value="flat">Flat</option>
+            <option value="knobbed">Knobbed</option>
+            <option value="sunken">Sunken</option>
+        </select><br>
+
+        <label for="cap_surface">Cap Surface:</label>
+        <select name="cap_surface" required>
+            <option value="fibrous">Fibrous</option>
+            <option value="grooves">Grooves</option>
+            <option value="scaly">Scaly</option>
+            <option value="smooth">Smooth</option>
+        </select><br>
+
+        <label for="cap_color">Cap Color:</label>
+        <select name="cap_color" required>
+            <option value="brown">Brown</option>
+            <option value="buff">Buff</option>
+            <option value="cinnamon">Cinnamon</option>
+            <option value="gray">Gray</option>
+            <option value="green">Green</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="bruises">Bruises:</label>
+        <select name="bruises" required>
+            <option value="bruises">Bruises</option>
+            <option value="no bruises">No Bruises</option>
+        </select><br>
+
+        <label for="odor">Odor:</label>
+        <select name="odor" required>
+            <option value="almond">Almond</option>
+            <option value="anise">Anise</option>
+            <option value="creosote">Creosote</option>
+            <option value="fishy">Fishy</option>
+            <option value="foul">Foul</option>
+            <option value="musty">Musty</option>
+            <option value="none">None</option>
+            <option value="pungent">Pungent</option>
+            <option value="spicy">Spicy</option>
+        </select><br>
+
+        <label for="gill_attachment">Gill Attachment:</label>
+        <select name="gill_attachment" required>
+            <option value="attached">Attached</option>
+            <option value="descending">Descending</option>
+            <option value="free">Free</option>
+            <option value="notched">Notched</option>
+        </select><br>
+
+        <label for="gill_spacing">Gill Spacing:</label>
+        <select name="gill_spacing" required>
+            <option value="close">Close</option>
+            <option value="crowded">Crowded</option>
+            <option value="distant">Distant</option>
+        </select><br>
+
+        <label for="gill_size">Gill Size:</label>
+        <select name="gill_size" required>
+            <option value="broad">Broad</option>
+            <option value="narrow">Narrow</option>
+        </select><br>
+
+        <label for="gill_color">Gill Color:</label>
+        <select name="gill_color" required>
+            <option value="black">Black</option>
+            <option value="brown">Brown</option>
+            <option value="buff">Buff</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="gray">Gray</option>
+            <option value="green">Green</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="stalk_shape">Stalk Shape:</label>
+        <select name="stalk_shape" required>
+            <option value="enlarging">Enlarging</option>
+            <option value="tapering">Tapering</option>
+        </select><br>
+
+        <label for="stalk_surface_above_ring">Stalk Surface Above Ring:</label>
+        <select name="stalk_surface_above_ring" required>
+            <option value="fibrous">Fibrous</option>
+            <option value="scaly">Scaly</option>
+            <option value="silky">Silky</option>
+            <option value="smooth">Smooth</option>
+        </select><br>
+
+        <label for="stalk_surface_below_ring">Stalk Surface Below Ring:</label>
+        <select name="stalk_surface_below_ring" required>
+            <option value="fibrous">Fibrous</option>
+            <option value="scaly">Scaly</option>
+            <option value="silky">Silky</option>
+            <option value="smooth">Smooth</option>
+        </select><br>
+
+        <label for="stalk_color_above_ring">Stalk Color Above Ring:</label>
+        <select name="stalk_color_above_ring" required>
+            <option value="brown">Brown</option>
+            <option value="buff">Buff</option>
+            <option value="cinnamon">Cinnamon</option>
+            <option value="gray">Gray</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="stalk_color_below_ring">Stalk Color Below Ring:</label>
+        <select name="stalk_color_below_ring" required>
+            <option value="brown">Brown</option>
+            <option value="buff">Buff</option>
+            <option value="cinnamon">Cinnamon</option>
+            <option value="gray">Gray</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="veil_color">Veil Color:</label>
+        <select name="veil_color" required>
+            <option value="brown">Brown</option>
+            <option value="orange">Orange</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="ring_number">Ring Number:</label>
+        <select name="ring_number" required>
+            <option value="none">None</option>
+            <option value="one">One</option>
+            <option value="two">Two</option>
+        </select><br>
+
+        <label for="ring_type">Ring Type:</label>
+        <select name="ring_type" required>
+            <option value="cobwebby">Cobwebby</option>
+            <option value="evanescent">Evanescent</option>
+            <option value="flaring">Flaring</option>
+            <option value="large">Large</option>
+            <option value="none">None</option>
+            <option value="pendant">Pendant</option>
+            <option value="sheathing">Sheathing</option>
+            <option value="zone">Zone</option>
+        </select><br>
+
+        <label for="spore_print_color">Spore Print Color:</label>
+        <select name="spore_print_color" required>
+            <option value="black">Black</option>
+            <option value="brown">Brown</option>
+            <option value="buff">Buff</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="green">Green</option>
+            <option value="orange">Orange</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="red">Red</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+        </select><br>
+
+        <label for="population">Population:</label>
+        <select name="population" required>
+            <option value="abundant">Abundant</option>
+            <option value="clustered">Clustered</option>
+            <option value="numerous">Numerous</option>
+            <option value="scattered">Scattered</option>
+            <option value="several">Several</option>
+            <option value="solitary">Solitary</option>
+        </select><br>
+
+        <label for="habitat">Habitat:</label>
+        <select name="habitat" required>
+            <option value="grasses">Grasses</option>
+            <option value="leaves">Leaves</option>
+            <option value="meadows">Meadows</option>
+            <option value="muddy">Muddy</option>
+            <option value="paths">Paths</option>
+            <option value="urban">Urban</option>
+            <option value="waste">Waste</option>
+            <option value="woods">Woods</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+<footer>
+    <footer>
+        Disclaimer: <br>This project is intended for educational and demonstration purposes only. <br>The predictions and outputs generated are based on the underlying model and dataset used in the project and may not be fully accurate or applicable to real-world scenarios. <br>
+        I strongly recommend you don't bet your life savings on them (or use them as your only source of wisdom). <br>
+        Use at your own risk — preferably with a good sense of humor. <br>
+        For inquiries or further information, please contact: <a href="mailto:yilli_@outlook.com">yilli_@outlook.com</a>.
+    </footer>
+    
+</footer>
+</body>
+</html>
