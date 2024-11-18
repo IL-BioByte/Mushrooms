@@ -40,6 +40,8 @@ The Mushroom Edibility Predictor was built using a Decision Tree classifier, whi
 The model achieved 100% accuracy on the training dataset, which initially seemed like a great result. 
 However, to ensure that this high accuracy reflects real-world performance, we evaluated the model using a confusion matrix.
 This matrix indicates that the model correctly classified every mushroom sample—no false positives (edible mushrooms wrongly classified as poisonous) or false negatives (poisonous mushrooms wrongly classified as edible). 
+
+
 ![image](https://github.com/user-attachments/assets/d02bff9d-c21d-4754-806b-841f5cf5dafe)
 
 
