@@ -1,13 +1,17 @@
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 
+#initialization of flask
 app = Flask(__name__, template_folder='templates')
 
-
+#load the model created from prediction
 model = joblib.load('models/mushroom_tree_model.pkl')
 
+#make a directionary that holds all thepossible categories
 feature_mappings = {
     'cap_shape': ['bell', 'conical', 'convex', 'flat', 'knobbed', 'sunken'],
     'cap_surface': ['fibrous', 'grooves', 'scaly', 'smooth'],
@@ -41,7 +45,10 @@ feature_mappings = {
                 'waste', 'woods']
 }
 
+#creates a dictionary of LabelEncoder from feature_mapping
+encoders = {feature: LabelEncoder().fit(values) for feature, values in feature_mappings.items()}
 
+# GET (to load the page) and POST (to handle form submissions)
 @app.route("/", methods=["GET", "POST"])
 def predict():
     if request.method == "POST":
@@ -68,21 +75,22 @@ def predict():
             request.form.get("habitat"),
         ]
 
-        print("Form Data: ", features)
-
-
-        print("Processed Features: ", features)  
-
+        #loops through the selected features and encodes them into numeric values.
         encoded_features = []
-        for feature, feature_name in zip(features, feature_mappings.keys()):
-            if feature in feature_mappings[feature_name]:
-                encoded_value = feature_mappings[feature_name].index(feature)
-                encoded_features.append(encoded_value)
-            else:
-                return render_template("index.html", prediction_text=f"Invalid value for {feature_name}")
 
-        prediction = model.predict([encoded_features])[0]
-        result = "Edible" if prediction == 1 else "Poisonous"
+        for feature, feature_name in zip(features, feature_mappings.keys()):
+            encoder = encoders[feature_name]  # Get the pre-trained encoder for this feature
+            encoded_value = encoder.transform([feature])[0]  # Transform the feature to its encoded value
+            encoded_features.append(encoded_value)
+
+        #creating a data frame for the encoded features becasue the tree is trained in data fram
+        encoded_features_df = pd.DataFrame([encoded_features], columns=model.feature_names_in_)
+
+        print("Encoded Features: ", encoded_features_df)
+
+        #making the prediction, 0 means edible and 1 means poisonous
+        prediction = model.predict(encoded_features_df)[0]
+        result = "Edible" if prediction == 0 else "Poisonous"
 
         return render_template("index.html", prediction_text=f"Your mushroom is: {result}")
 
@@ -90,3 +98,4 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
